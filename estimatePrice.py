@@ -13,12 +13,13 @@ def main():
         exit(1)
 
     def estimatePrice(mileage):
-        theta0 = 8499.599639859707
-        theta1 = -214.48963512490795
+        theta0 = 8499.59964993269
+        theta1 = -2144.8963591698
+        normalization = 100000
 
-        return theta0 + (theta1 * mileage)
+        return theta0 + (theta1 * (mileage / normalization))
 
-    print(f"Estimated price: {estimatePrice(mileage)}")
+    print(f"Estimated price: {estimatePrice(mileage)} for {mileage} km")
 
 
 if __name__ == "__main__":
