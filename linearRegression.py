@@ -31,7 +31,7 @@ def linearRegression(data, learningRate):
 		theta0 -= tmp0
 		theta1 -= tmp1
 		
-		if not j % 10000 or stopWhenReached < 2:
+		if not j % 1000 or stopWhenReached < 2:
 			print("\r" + f"Iteration {j}    Theta0: {theta0} 	Theta1: {theta1}", flush=True)
 		j += 1
 	return theta0, theta1
@@ -41,7 +41,7 @@ def main():
 
 	normalization = 100000
 	data['km'] /= normalization
-	learningRate = 0.001
+	learningRate = 0.01
 
 	theta0, theta1 = linearRegression(data, learningRate)
 	thetas = {
