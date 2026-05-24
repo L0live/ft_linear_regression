@@ -1,4 +1,5 @@
-
+from json import load
+from os import path
 
 def main():
     print("Your mileage to estimate the price: ")
@@ -12,15 +13,19 @@ def main():
         print("The mileage must be a full digit entry")
         exit(1)
 
-    def estimatePrice(mileage):
-        theta0 = 8499.59964993269
-        theta1 = -2144.8963591698
-        normalization = 100000
+    theta0 = 0
+    theta1 = 0
+    normalization = 1
+    if path.exists("thetas.json"):
+        with open("thetas.json", "r") as f:
+            thetas = load(f)
+        theta0 = thetas["theta0"]
+        theta1 = thetas["theta1"]
+        normalization = thetas["normalization"]
 
-        return theta0 + (theta1 * (mileage / normalization))
+    estimatePrice = theta0 + (theta1 * (mileage / normalization))
 
-    print(f"Estimated price: {estimatePrice(mileage)} for {mileage} km")
-
+    print(f"Estimated price: {estimatePrice} for {mileage} km")
 
 if __name__ == "__main__":
     main()
